@@ -58,7 +58,7 @@ exports.crearCuenta = async (req, res, next) => {
 };
 
 exports.confirmarCuenta = async (req, res) => {
-  res.json(req.params.correo);
+  // res.json(req.params.correo);
   const usuario = await Usuarios.findOne({
     where: {
       email: req.params.correo
@@ -70,7 +70,7 @@ exports.confirmarCuenta = async (req, res) => {
     res.redirect('/crear-cuenta');
   }
 
-  usuario.activo = 1;
+  usuario.active = 1;
   await usuario.save();
 
   req.flash('correcto', 'Cuenta activada correctamente');
